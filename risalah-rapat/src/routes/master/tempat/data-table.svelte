@@ -2,11 +2,11 @@
   import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
   import { readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
   import { addPagination, addSortBy, addTableFilter } from "svelte-headless-table/plugins";
   import { Button } from "$lib/components/ui/button";
   import { ArrowUpDown } from "lucide-svelte";
   import { Input } from "$lib/components/ui/input";
+  import EditPlace from "./edit-place.svelte";
 
   type Tempat = {
     no: number;
@@ -92,7 +92,7 @@
       accessor: ({ tempat }) => tempat,
       header: "Aksi",
       cell: (item) => {
-        return createRender(DataTableActions, { id: item.no });
+        return createRender(EditPlace, { id: item.no });
       },
       plugins: {
         sort: {
@@ -110,7 +110,7 @@
 </script>
 
 <div>
-  <div class="flex items-center py-4">
+  <div class="flex items-center py-4 justify-end">
     <Input
       class="max-w-sm"
       placeholder="Cari di sini..."
